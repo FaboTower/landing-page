@@ -5,6 +5,14 @@
     --secondary:#7c3aed;
     --accent: #f0abfc;
     --muted:#f8f0ff;
+    --shadow: 0 12px 30px rgba(124, 58, 237, 0.18);
+}
+
+body.dark{
+    --bg:#111014;
+    --text:#f73aed;
+    --muted:#1d1a22;
+    --shadow: 0 12px 30px rgba(217, 70, 239, 0.18);
 }
 
 *{
@@ -49,15 +57,21 @@ body {
 .navbar{
     position: sticky;
     top: 0;
+    z-index: 100;
     background-color: var(--bg);
     color: var(--text);
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    transition: 0.5s ease;
 }
-
+.navbar.scrolled{
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    color: white;
+    padding: 10px;
+    box-shadow: var(--shadow);
+}
 .logo{
     font-weight: 800;
     font-size: 1.4rem;
@@ -67,3 +81,64 @@ body {
     color: var(--primary);
 }
 
+.navbar.scrolled .logo span{
+    color: white;
+}
+
+.navbar nav a {
+    color: inherit;
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+#btnTheme{
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.hero{
+    height: 85vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--muted), #ffffff);
+}
+body.dark .hero{
+    background:linear-gradient(135deg, var(#1d1a22), #111014);
+}
+
+.slide{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    padding: 0 5%;
+    inset: 0;
+
+}
+.slide.active{
+    display: flex;
+    animation: fade 0.8s ease;
+}
+
+.slide:nth-child(1){
+    background-image: linear-gradient(rgba(255,255,255, 0.5), rgba(255,255,255, 0.5)), url("https://images.unsplash.com/photo-1467232004584-a241de8bcf5d");
+}
+.slide:nth-child(2){
+    background-image: linear-gradient(rgba(255,255,255, 0.75), rgba(255,255,255, 0.75)), url("https://images.unsplash.com/photo-1497366811353-6870744d04b2");
+}
+.slide:nth-child(3){
+    background-image: linear-gradient(rgba(255,255,255, 0.75), rgba(255,255,255, 0.75)), url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4");
+}
+
+body.dark .slide{
+    background-blend-mode: multiply;
+}
+
+.section{
+    height: 90vh;
+}

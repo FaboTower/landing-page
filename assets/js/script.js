@@ -1,8 +1,11 @@
 const navbar = document.querySelector("#navbar");
 const btnTheme = document.querySelector("#btnTheme");
+const slides = document.querySelectorAll(".slide");
+
+let currentSlide = 0;
 
 window.addEventListener("scroll", function(){
-    navbar.classList.toggle("scrolled", window.screenY > 90);
+    navbar.classList.toggle("scrolled", window.screenY > 80);
 });
 
 btnTheme.addEventListener("click", function(){
@@ -12,6 +15,23 @@ btnTheme.addEventListener("click", function(){
     }
     else{
         btnTheme.textContent = '🌙';
-
     }
 });
+
+function showslide(index) {
+    slides.forEach(function (slide){
+        slide.classList.remove('active');
+    });
+    
+    slides[index].classList.add('active');
+
+    setInterval(function(){
+        currentSlide++;
+        if(currentSlide >= slides.length){
+            currentSlide = 0;
+        }
+        showslide(currentSlide);
+    },4000)
+}
+
+showslide(currentSlide);
