@@ -3,6 +3,7 @@ const btnTheme = document.querySelector("#btnTheme");
 const slides = document.querySelectorAll(".slide");
 
 let currentSlide = 0;
+let counterStarted = false;
 
 window.addEventListener("scroll", function(){
     navbar.classList.toggle("scrolled", window.screenY > 80);
@@ -25,13 +26,28 @@ function showslide(index) {
     
     slides[index].classList.add('active');
 
-    setInterval(function(){
+    setTimeout(function(){
         currentSlide++;
         if(currentSlide >= slides.length){
             currentSlide = 0;
         }
         showslide(currentSlide);
-    },4000)
+    },3000)
 }
 
 showslide(currentSlide);
+
+function startCounter() {
+    
+}
+
+window.addEventListener("scroll", function(){
+    const aboutSection = document.querySelector("#about");
+    const sectionPosition = aboutSection.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if(sectionPosition < screenHeight -150 && counterStarted === false){
+        startCounter()
+        counterStarted = true;
+    }
+});
